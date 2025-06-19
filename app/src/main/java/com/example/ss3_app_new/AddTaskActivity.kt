@@ -36,11 +36,9 @@ class AddTaskActivity : AppCompatActivity() {
         binding = ActivityAddTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Retrieve the Task from intent safely
         editingTask = intent.getParcelableExtra("extra_task")
 
         if (editingTask != null) {
-            // Pre-fill fields for editing
             binding.titleInput.setText(editingTask!!.title)
             binding.descriptionInput.setText(editingTask!!.description)
             calendar.timeInMillis = editingTask!!.dateTime
@@ -51,16 +49,15 @@ class AddTaskActivity : AppCompatActivity() {
             val hour = calendar.get(Calendar.HOUR_OF_DAY)
             val minute = calendar.get(Calendar.MINUTE)
 
-            binding.dateButton.text = String.format("%02d/%02d/%04d • %02d:%02d", day, month, year, hour, minute)
+            binding.dateButton.text = String.format("Select Date")
         } else {
-            // Set default date button text if adding new task
             val day = calendar.get(Calendar.DAY_OF_MONTH)
             val month = calendar.get(Calendar.MONTH) + 1
             val year = calendar.get(Calendar.YEAR)
             val hour = calendar.get(Calendar.HOUR_OF_DAY)
             val minute = calendar.get(Calendar.MINUTE)
 
-            binding.dateButton.text = String.format("%02d/%02d/%04d • %02d:%02d", day, month, year, hour, minute)
+            binding.dateButton.text = String.format("Select Date")
         }
 
         binding.dateButton.setOnClickListener {
@@ -110,20 +107,24 @@ class AddTaskActivity : AppCompatActivity() {
 
             val taskDateTime = calendar.timeInMillis
 
+            val sharedPrefs = getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
+            val notificationsEnabled = sharedPrefs.getBoolean("notifications_enabled", true)
+
             if (editingTask != null) {
-                // Update existing task: delete old, add new with updated info
                 TaskStorage.deleteTask(editingTask!!)
                 val updatedTask = Task(title, description, taskDateTime)
                 TaskStorage.addTask(updatedTask)
                 Toast.makeText(this, "Task updated!", Toast.LENGTH_SHORT).show()
             } else {
-                // Add new task
                 val newTask = Task(title, description, taskDateTime)
                 TaskStorage.addTask(newTask)
                 Toast.makeText(this, "Task added!", Toast.LENGTH_SHORT).show()
+
+                if (notificationsEnabled) {
+                    sendTaskCreatedNotification(title)
+                }
             }
 
-            // Return to MainActivity without app closing unexpectedly
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             startActivity(intent)
@@ -134,7 +135,18 @@ class AddTaskActivity : AppCompatActivity() {
     }
 
     private fun sendTaskCreatedNotification(taskTitle: String) {
-        // Your existing notification permission & sending code here (omitted for brevity)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                return
+            }
+        }
+
+        try {
+            NotificationHelper.showTaskCreatedNotification(this, taskTitle)
+        } catch (e: SecurityException) {
+            Toast.makeText(this, "Notification permission not granted.", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setupBottomNavigation() {

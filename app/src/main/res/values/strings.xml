@@ -1,5 +1,8 @@
 <resources>
+
+<!--App Name-->
     <string name="app_name">Scheduling App</string>
+
     <string name="already_have_an_account_log_in">Already have an account? Log In</string>
     <string name="sign_up">Sign Up</string>
     <string name="password">Password</string>
@@ -9,12 +12,13 @@
     <string name="already_have_an_account_login">Already have an account? Log in</string>
     <string name="back">Back</string>
 
+<!--Languages-->
     <string-array name="language_selection_array">
         <item>English</item>
         <item>Afrikaans</item>
     </string-array>
 
-<!--    Theme selection-->
+<!--Themes-->
     <string-array name="theme_selection_array">
         <item>African Sunset</item>
         <item>Light Mode</item>

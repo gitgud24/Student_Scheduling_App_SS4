@@ -1,10 +1,14 @@
 package com.example.ss3_app_new
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.ss3_app_new.databinding.ActivitySettingsBinding
@@ -16,6 +20,21 @@ class SettingsActivity : AppCompatActivity() {
     private val PREFS_NAME = "app_preferences"
     private val NOTIFICATIONS_KEY = "notifications_enabled"
     private val THEME_KEY = "selected_theme"
+
+    private val requestNotificationPermission = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        val sharedPrefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        if (isGranted) {
+            sharedPrefs.edit().putBoolean(NOTIFICATIONS_KEY, true).apply()
+            binding.notificationSwitch.isChecked = true
+            Toast.makeText(this, "Notifications enabled", Toast.LENGTH_SHORT).show()
+        } else {
+            sharedPrefs.edit().putBoolean(NOTIFICATIONS_KEY, false).apply()
+            binding.notificationSwitch.isChecked = false
+            Toast.makeText(this, "Notifications permission denied", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         applySavedTheme()
@@ -31,15 +50,33 @@ class SettingsActivity : AppCompatActivity() {
 
         // Toggle listener for notifications
         binding.notificationSwitch.setOnCheckedChangeListener { _, isChecked ->
-            sharedPrefs.edit().putBoolean(NOTIFICATIONS_KEY, isChecked).apply()
-            Toast.makeText(
-                this,
-                if (isChecked) "Notifications Enabled" else "Notifications Disabled",
-                Toast.LENGTH_SHORT
-            ).show()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (isChecked) {
+                    if (ContextCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.POST_NOTIFICATIONS
+                        ) != PackageManager.PERMISSION_GRANTED
+                    ) {
+                        requestNotificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                    } else {
+                        sharedPrefs.edit().putBoolean(NOTIFICATIONS_KEY, true).apply()
+                        Toast.makeText(this, "Notifications enabled", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    sharedPrefs.edit().putBoolean(NOTIFICATIONS_KEY, false).apply()
+                    Toast.makeText(this, "Notifications disabled", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                sharedPrefs.edit().putBoolean(NOTIFICATIONS_KEY, isChecked).apply()
+                Toast.makeText(
+                    this,
+                    if (isChecked) "Notifications enabled" else "Notifications disabled",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
-        // Go to account settings
+        // Account Settings
         binding.accountSettingsButton.setOnClickListener {
             startActivity(Intent(this, AccountSettingsActivity::class.java))
         }
@@ -58,16 +95,24 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-        // Language spinner (not yet functional, will do next)
+        // Language spinner using themed layout
         val languages = resources.getStringArray(R.array.language_selection_array)
-        val languageAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, languages)
-        languageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val languageAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.language_selection_array,
+            R.layout.spinner_item
+        )
+        languageAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
         binding.languageSpinner.adapter = languageAdapter
 
-        // Theme spinner
+        // Theme spinner using themed layout
         val themes = resources.getStringArray(R.array.theme_selection_array)
-        val themeAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, themes)
-        themeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val themeAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.theme_selection_array,
+            R.layout.spinner_item
+        )
+        themeAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
         binding.themeSpinner.adapter = themeAdapter
 
         // Set saved theme on spinner
@@ -101,7 +146,7 @@ class SettingsActivity : AppCompatActivity() {
         when (prefs.getString(THEME_KEY, "African Sunset")) {
             "Light Mode" -> setTheme(R.style.LightTheme)
             "Dark Mode" -> setTheme(R.style.DarkTheme)
-            "African Sunset" -> setTheme(R.style.SunsetTheme)
+            else -> setTheme(R.style.SunsetTheme)
         }
     }
 

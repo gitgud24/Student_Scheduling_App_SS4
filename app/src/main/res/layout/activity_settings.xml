@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Settings"
         android:textSize="32sp"
-        android:textColor="#000000"
+        android:textColor="?android:textColor"
         android:textStyle="bold"
         android:fontFamily="@font/headingfont"
         app:layout_constraintTop_toTopOf="parent"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:text="Language"
         android:textStyle="bold"
-        android:textColor="#FFFFFF"
+        android:textColor="?android:textColor"
         app:layout_constraintTop_toBottomOf="@id/settingsTitle"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="24dp"/>
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:text="Themes"
         android:textStyle="bold"
-        android:textColor="#FFFFFF"
+        android:textColor="?android:textColor"
         app:layout_constraintTop_toBottomOf="@id/languageSpinner"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="24dp"/>
@@ -79,10 +79,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Notifications"
-        android:textColor="#FFFFFF"
+        android:textColor="?android:textColor"
         android:textSize="18sp"
-        android:thumbTint="#FFFFFF"
-        android:trackTint="#CCCCCC"
+        android:thumbTint="@color/dark_blue"
+        android:trackTint="@color/dark_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/themeSpinner" />
 
@@ -91,7 +91,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Account Settings"
-        android:textColor="#FFF"
+        android:textColor="#FFFFFF"
         android:background="@drawable/button_overlay_bg"
         android:textAllCaps="false"
         app:layout_constraintTop_toBottomOf="@id/notificationSwitch"
@@ -106,7 +106,7 @@
         android:layout_height="wrap_content"
         android:text="Feedback"
         android:textStyle="bold"
-        android:textColor="#FFFFFF"
+        android:textColor="?android:textColor"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -134,6 +134,9 @@
         android:layout_height="wrap_content"
         android:numStars="5"
         android:stepSize="1.0"
+        android:progressTint="@color/dark_blue"
+        android:secondaryProgressTint="@color/dark_blue"
+        android:thumbTint="@color/dark_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/submitFeedbackButton"
@@ -153,6 +156,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+<!--    Testing Notifications Button-->
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/testNotificationButton"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="12dp"-->
+<!--        android:background="@drawable/button_background"-->
+<!--        android:text="Test Notification"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textColor="#FFF"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/submitFeedbackButton"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"

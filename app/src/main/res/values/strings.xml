@@ -14,6 +14,7 @@
         <item>Afrikaans</item>
     </string-array>
 
+<!--    Theme selection-->
     <string-array name="theme_selection_array">
         <item>African Sunset</item>
         <item>Light Mode</item>

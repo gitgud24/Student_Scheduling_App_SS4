@@ -44,11 +44,9 @@ class SettingsActivity : AppCompatActivity() {
 
         val sharedPrefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
-        // Restore notification state
         val notificationsEnabled = sharedPrefs.getBoolean(NOTIFICATIONS_KEY, true)
         binding.notificationSwitch.isChecked = notificationsEnabled
 
-        // Toggle listener for notifications
         binding.notificationSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 if (isChecked) {
@@ -76,12 +74,10 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-        // Account Settings
         binding.accountSettingsButton.setOnClickListener {
             startActivity(Intent(this, AccountSettingsActivity::class.java))
         }
 
-        // Feedback submission
         binding.submitFeedbackButton.setOnClickListener {
             val rating = binding.ratingBar.rating
             val comment = binding.feedbackInput.text.toString().trim()
@@ -95,7 +91,6 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-        // Language spinner using themed layout
         val languages = resources.getStringArray(R.array.language_selection_array)
         val languageAdapter = ArrayAdapter.createFromResource(
             this,
@@ -105,7 +100,6 @@ class SettingsActivity : AppCompatActivity() {
         languageAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
         binding.languageSpinner.adapter = languageAdapter
 
-        // Theme spinner using themed layout
         val themes = resources.getStringArray(R.array.theme_selection_array)
         val themeAdapter = ArrayAdapter.createFromResource(
             this,
@@ -115,7 +109,6 @@ class SettingsActivity : AppCompatActivity() {
         themeAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
         binding.themeSpinner.adapter = themeAdapter
 
-        // Set saved theme on spinner
         val savedTheme = sharedPrefs.getString(THEME_KEY, "African Sunset")
         val selectedIndex = themes.indexOf(savedTheme)
         if (selectedIndex != -1) binding.themeSpinner.setSelection(selectedIndex)

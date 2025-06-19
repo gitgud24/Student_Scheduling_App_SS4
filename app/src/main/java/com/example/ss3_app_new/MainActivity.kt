@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         const val EDIT_TASK_REQUEST_CODE = 1
     }
 
-    // ✅ Notification permission request launcher
     private val notificationPermissionRequest =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
@@ -38,7 +37,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-    // ✅ Apply saved theme
     private fun applySavedTheme() {
         val prefs = getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
         when (prefs.getString("selected_theme", "African Sunset")) {
@@ -57,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         requestNotificationPermissionIfNeeded()
         createNotificationChannel()
 
-        // Task list setup
         taskAdapter = TaskAdapter(
             TaskStorage.getTasksSortedByDate().toMutableList(),
             onEditClick = { taskToEdit ->
@@ -73,7 +70,6 @@ class MainActivity : AppCompatActivity() {
         binding.taskRecycler.layoutManager = LinearLayoutManager(this)
         binding.taskRecycler.adapter = taskAdapter
 
-        // Week calendar setup
         val (monthYear, weekDays) = getCurrentWeekWithHeader()
         weekCalendarAdapter = WeekCalendarAdapter(monthYear, weekDays)
         binding.weekCalendarRecycler.layoutManager = LinearLayoutManager(this)
@@ -155,7 +151,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // ✅ Ask for notification permission on first launch if needed
     private fun requestNotificationPermissionIfNeeded() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             val prefs = getSharedPreferences("app_preferences", Context.MODE_PRIVATE)

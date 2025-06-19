@@ -22,31 +22,26 @@ class AccountSettingsActivity : AppCompatActivity() {
         val userName = sharedPref.getString("user_name", "User")
         binding.profileName.text = userName
 
-        // Back button
         binding.backArrow.setOnClickListener {
             finish()
         }
 
-        // Logout
         binding.logoutButton.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
 
-        // Change Name
         binding.changeNameButton.setOnClickListener {
             showUpdateDialog("Change Name", "Enter new name:", "user_name") { newName ->
                 binding.profileName.text = newName
             }
         }
 
-        // Change Email
         binding.changeEmailButton.setOnClickListener {
             showUpdateDialog("Change Email", "Enter new email:", "user_email")
         }
 
-        // Change Password
         binding.changePasswordButton.setOnClickListener {
             showUpdateDialog("Change Password", "Enter new password:", "user_password", true)
         }

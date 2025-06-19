@@ -16,14 +16,12 @@ object NotificationHelper {
     fun showTaskCreatedNotification(context: Context, taskTitle: String) {
         createNotificationChannel(context)
 
-        // Check notification permission for Android 13+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ActivityCompat.checkSelfPermission(
                     context,
                     Manifest.permission.POST_NOTIFICATIONS
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
-                // Permission not granted, do not send the notification
                 return
             }
         }

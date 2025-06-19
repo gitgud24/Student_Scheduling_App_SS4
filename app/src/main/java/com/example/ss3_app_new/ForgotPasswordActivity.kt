@@ -16,7 +16,6 @@ class ForgotPasswordActivity : AppCompatActivity() {
         binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Handle reset button
         binding.resetButton.setOnClickListener {
             val enteredEmail = binding.emailInput.text.toString().trim()
 
@@ -31,7 +30,6 @@ class ForgotPasswordActivity : AppCompatActivity() {
             if (enteredEmail == savedEmail) {
                 Toast.makeText(this, "Email verified. Logging you in...", Toast.LENGTH_SHORT).show()
 
-                // Proceed to main screen
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -40,7 +38,6 @@ class ForgotPasswordActivity : AppCompatActivity() {
             }
         }
 
-        // Handle back to login click
         binding.backToLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()

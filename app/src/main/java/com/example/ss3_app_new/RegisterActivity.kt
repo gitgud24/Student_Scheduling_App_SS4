@@ -25,7 +25,6 @@ class RegisterActivity : AppCompatActivity() {
             val password = binding.passwordInput.text.toString().trim()
             val name = binding.nameInput.text.toString().trim()
 
-            //save user details for temporary authentication here - saved to android device app data
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 val sharedPref = getSharedPreferences("UserData", MODE_PRIVATE)
                 val editor = sharedPref.edit()

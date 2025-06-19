@@ -1,33 +1,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base App Theme -->
     <style name="Theme.SS3_APP_NEW" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Branding colors -->
+
         <item name="colorPrimary">@color/Icon_UnSelected</item>
         <item name="colorPrimaryVariant">@color/Icon_Selected</item>
         <item name="colorOnPrimary">@color/white</item>
 
-        <!-- Secondary colors -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
 
-        <!-- General appearance -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/Icon_UnSelected</item>
 
-        <!-- Theme-controlled background -->
         <item name="android:windowBackground">?attr/colorBackground</item>
 
-        <!-- Default background and text colors -->
         <item name="colorBackground">@drawable/login_background</item>
         <item name="android:textColor">@color/black</item>
 
-        <!-- UI element styles -->
         <item name="android:buttonStyle">@style/ButtonStyle</item>
         <item name="android:spinnerStyle">@style/SpinnerStyle</item>
     </style>
 
-    <!-- Light Theme -->
     <style name="LightTheme" parent="Theme.SS3_APP_NEW">
         <item name="colorBackground">@drawable/light_gradient</item>
         <item name="android:textColor">@color/black</item>
@@ -35,7 +28,6 @@
         <item name="spinnerTextColor">@color/spinner_text_light</item>
     </style>
 
-    <!-- Dark Theme -->
     <style name="DarkTheme" parent="Theme.SS3_APP_NEW">
         <item name="colorBackground">@drawable/dark_gradient</item>
         <item name="android:textColor">@color/white</item>
@@ -45,22 +37,19 @@
         <item name="android:spinnerStyle">@style/DarkSpinnerStyle</item>
     </style>
 
-    <!-- African Sunset Theme (Default) -->
     <style name="SunsetTheme" parent="Theme.SS3_APP_NEW">
         <item name="colorBackground">@drawable/login_background</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/black</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorOnSecondary">@color/white</item>
         <item name="spinnerTextColor">@color/spinner_text_light</item>
     </style>
 
-    <!-- Spinner Style -->
     <style name="SpinnerStyle" parent="Widget.AppCompat.Spinner">
         <item name="android:popupBackground">@color/white</item>
-        <item name="android:textColor">@color/black</item> <!-- optional -->
+        <item name="android:textColor">@color/black</item>
     </style>
 
-    <!-- Button Style -->
     <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:textColor">@color/white</item>
         <item name="backgroundTint">@color/Icon_Selected</item>

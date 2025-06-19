@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/sunText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="22"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/monText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="23"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/tueText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="24"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/wedText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="25"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/thuText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="26"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/friText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="27"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/satText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="28"
+        android:textSize="16sp"/>
+</LinearLayout>

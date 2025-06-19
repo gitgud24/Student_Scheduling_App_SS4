@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="0dp"
+    android:background="@null">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/button_overlay_bg"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/monthYearText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="December 2024"
+            android:textSize="18sp"
+            android:textColor="#EFEFEF"
+            android:gravity="center"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Sun"
+                android:gravity="center"
+                android:textColor="#EFEFEF"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mon"
+                android:gravity="center"
+                android:textColor="#EFEFEF"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tue"
+                android:gravity="center"
+                android:textColor="#EFEFEF"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Wed"
+                android:gravity="center"
+                android:textColor="#EFEFEF"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Thu"
+                android:gravity="center"
+                android:textColor="#EFEFEF"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fri"
+                android:gravity="center"
+                android:textColor="#EFEFEF"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Sat"
+                android:gravity="center"
+                android:textColor="#EFEFEF"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/sunText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="22"
+                android:gravity="center"
+                android:textColor="#EFEFEF"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/monText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="23"
+                android:gravity="center"
+                android:textColor="#EFEFEF"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/tueText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="24"
+                android:gravity="center"
+                android:textColor="#EFEFEF"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/wedText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="25"
+                android:gravity="center"
+                android:textColor="#EFEFEF"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/thuText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="26"
+                android:gravity="center"
+                android:textColor="#EFEFEF"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/friText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="27"
+                android:gravity="center"
+                android:textColor="#EFEFEF"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/satText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="28"
+                android:gravity="center"
+                android:textColor="#EFEFEF"
+                android:textSize="16sp"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
